@@ -3,6 +3,7 @@ CREATE DATABASE vent_em;
 CREATE TABLE vents (
   id SERIAL4 PRIMARY KEY,
   body VARCHAR(140),
+  creation_date_time TIMESTAMP,
   user_id INTEGER
 );
 

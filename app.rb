@@ -44,3 +44,9 @@ delete '/login' do
   session[:user_id] = nil
   redirect to '/login'
 end
+
+post '/' do
+  vent = Vent.new(body: params[:vent_body], user_id: current_user.id, creation_date_time: Time.now)
+  vent.save
+  redirect to '/'
+end
