@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require_relative 'db_config'
 require_relative 'models/user'
 require_relative 'models/vent'
+require_relative 'models/vent_type'
 require 'pry'
 
 enable :sessions
@@ -21,6 +22,7 @@ end
 
 get '/' do
   @vents = Vent.all
+  @vent_types = VentType.all
   erb :index
 end
 
@@ -46,7 +48,7 @@ delete '/login' do
 end
 
 post '/' do
-  vent = Vent.new(body: params[:vent_body], user_id: current_user.id, creation_date_time: Time.now)
+  vent = Vent.new(body: params[:vent_body], user_id: current_user.id, creation_date_time: Time.now, vent_type_id: params[:vent_type_id])
   vent.save
   redirect to '/'
 end
