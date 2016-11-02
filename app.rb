@@ -50,3 +50,16 @@ post '/' do
   vent.save
   redirect to '/'
 end
+
+get '/create_user' do
+  erb :create_user
+end
+
+post '/create_user' do
+  user = User.new(email: params[:email], username: params[:username], password: params[:password])
+  if user.save
+    redirect to '/'
+  else
+    erb :create_user
+  end
+end
