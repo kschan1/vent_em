@@ -21,7 +21,7 @@ helpers do
 end
 
 get '/' do
-  @vents = Vent.all
+  @vents = Vent.order(id: :desc)
   @vent_types = VentType.all
   erb :index
 end
@@ -64,4 +64,23 @@ post '/create_user' do
   else
     erb :create_user
   end
+end
+
+get '/:id' do
+  @vent = Vent.find(params[:id])
+  @vent_types = VentType.all
+  erb :show_vent
+end
+
+get '/edit_vent/:id' do
+  @vent = Vent.find(params[:id])
+  redirect to '/' unless current_user.id == @vent.user.id
+  @vent_types = VentType.all
+  erb :edit_vent
+end
+
+put '/:id' do
+  vent = Vent.find(params[:id])
+  vent.update(body: params[:vent_body], vent_type_id: params[:vent_type_id])
+  redirect to '/'
 end

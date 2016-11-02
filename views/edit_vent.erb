@@ -1,0 +1,14 @@
+<form action="/<%= @vent.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+  <textarea name="vent_body" rows="8" cols="40"><%= @vent.body %></textarea>
+  <select name="vent_type_id" id="">
+    <% @vent_types.each do |vent_type| %>
+      <% if vent_type.id == @vent.vent_type.id %>
+        <option selected value="<%= vent_type.id %>"><%= vent_type.name %></option>
+      <% else %>
+        <option value="<%= vent_type.id %>"><%= vent_type.name %></option>
+      <% end %>
+    <% end %>
+  </select>
+  <button>vent</button>
+</form>

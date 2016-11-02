@@ -15,8 +15,11 @@
 
 <% @vents.each do |vent| %>
   <h4><%= vent.user.username %> <small><%= vent.creation_date_time || '' %> - <%= vent.vent_type.name.capitalize %></small></h4>
-  <p><%= vent.body %></p>
+  <a href="/<%= vent.id %>"><p><%= vent.body %></a></p>
   <button><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
   <button>I feel you</button>
   <button>Toughen up!</button>
+  <% if current_user.id == vent.user.id %>
+    <a href="/edit_vent/<%= vent.id %>"><button>edit</button></a>
+  <% end %>
 <% end %>
