@@ -19,7 +19,7 @@
   <button><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
   <button>I feel you</button>
   <button>Toughen up!</button>
-  <% if current_user.id == vent.user.id %>
+  <% if logged_in? && current_user.id == vent.user.id %>
     <a href="/edit_vent/<%= vent.id %>"><button>edit</button></a>
   <% end %>
 <% end %>
