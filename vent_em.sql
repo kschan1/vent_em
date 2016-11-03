@@ -32,13 +32,17 @@ CREATE TABLE vent_types (
   name VARCHAR(200)
 );
 
-INSERT INTO vent_types (name) VALUES ('work');
 INSERT INTO vent_types (name) VALUES ('home');
+INSERT INTO vent_types (name) VALUES ('work');
+INSERT INTO vent_types (name) VALUES ('study');
+INSERT INTO vent_types (name) VALUES ('health');
 INSERT INTO vent_types (name) VALUES ('relationship');
-INSERT INTO vent_types (name) VALUES ('transport');
 INSERT INTO vent_types (name) VALUES ('money');
 INSERT INTO vent_types (name) VALUES ('politics');
+INSERT INTO vent_types (name) VALUES ('transport');
+INSERT INTO vent_types (name) VALUES ('sport');
 INSERT INTO vent_types (name) VALUES ('miscellaneous');
+
 
 -- ALTER TABLE vents ALTER COLUMN body SET NOT NULL;
 -- ALTER TABLE comments ALTER COLUMN body SET NOT NULL;
