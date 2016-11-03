@@ -3,4 +3,6 @@ class Vent < ActiveRecord::Base
   belongs_to :user
   belongs_to :vent_type
   has_many :comments
+  has_many :agrees
+  has_many :disagrees
 end

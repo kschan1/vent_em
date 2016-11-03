@@ -23,13 +23,21 @@ CREATE TABLE users (
   password_digest VARCHAR(400)
 );
 
-CREATE TABLE likes (
-  id SERIAL4 PRIMARY KEY,
-);
-
 CREATE TABLE vent_types (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(200)
+);
+
+CREATE TABLE agrees (
+  id SERIAL4 PRIMARY KEY,
+  vent_id INTEGER,
+  user_id INTEGER
+);
+
+CREATE TABLE disagrees (
+  id SERIAL4 PRIMARY KEY,
+  vent_id INTEGER,
+  user_id INTEGER
 );
 
 INSERT INTO vent_types (name) VALUES ('home');

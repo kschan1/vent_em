@@ -28,8 +28,12 @@
 
         <div class="panel-footer">
           <button class="btn btn-primary btn-xs"><i class="fa fa-reply" aria-hidden="true"></i> Reply | <%= Comment.where(vent_id: @vent.id).count%></button>
-          <button class="btn btn-success btn-xs">I feel you</button>
-          <button class="btn btn-warning btn-xs">Toughen up!</button>
+          <form action="/agree/<%= @vent.id %>" method="post">
+            <button class="btn btn-success btn-xs">I feel you | <%= Agree.where(vent_id: @vent.id).count %></button>
+          </form>
+          <form action="/disagree/<%= @vent.id %>" method="post">
+            <button class="btn btn-warning btn-xs">Toughen up! | <%= Disagree.where(vent_id: @vent.id).count %></button>
+          </form>
           <% if logged_in? && current_user.id == @vent.user.id %>
             <a href="/edit_vent/<%= @vent.id %>"><button class="btn btn-default btn-xs">edit</button></a>
           <% end %>
@@ -42,20 +46,21 @@
           <textarea class="form-control" name="comment_body" rows="8" cols="40"></textarea>
           <button class="btn btn-default">reply</button>
         </form>
+      <% else %>
+        <p>Please login to comment or vote</p>
       <% end %>
 
-      <h4>Comments</h3>
+      <h4>Comments</h4>
       <% @comments.each do |comment| %>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><%= comment.user.username %> <small><%= comment.creation_date_time || '' %></small></h4>
+            <h5 class="panel-title"><%= comment.user.username %> <small><%= comment.creation_date_time || '' %></small></h5>
           </div>
           <div class="panel-body">
             <p><%= comment.body %></p>
           </div>
         </div>
       <% end %>
-
 
     </div>
 

@@ -5,6 +5,9 @@ require_relative 'models/user'
 require_relative 'models/vent'
 require_relative 'models/vent_type'
 require_relative 'models/comment'
+require_relative 'models/agree'
+require_relative 'models/disagree'
+
 require 'pry'
 
 enable :sessions
@@ -92,7 +95,22 @@ put '/:id' do
 end
 
 post '/:id' do
+  redirect to "/#{params[:id]}" unless logged_in?
   comment = Comment.new(body: params[:comment_body], creation_date_time: Time.now, vent_id: params[:id], user_id: current_user.id)
   comment.save
+  redirect to "/#{params[:id]}"
+end
+
+post '/agree/:id' do
+  redirect to "/#{params[:id]}" unless logged_in?
+  agree = Agree.new(user_id: current_user.id, vent_id: params[:id])
+  agree.save
+  redirect to "/#{params[:id]}"
+end
+
+post '/disagree/:id' do
+  redirect to "/#{params[:id]}" unless logged_in?
+  disagree = Disagree.new(user_id: current_user.id, vent_id: params[:id])
+  disagree.save
   redirect to "/#{params[:id]}"
 end

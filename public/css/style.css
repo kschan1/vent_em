@@ -1,11 +1,15 @@
 
 body {
   padding-top: 70px;
-  background: #eeeeee;
+  background: #eff5ff;
 }
 
 .left-nav ul {
   list-style-type: none;
+}
+
+.left-nav ul li a {
+  color: #555555;
 }
 
 .panel-footer {
@@ -15,4 +19,13 @@ body {
 .panel-body a {
   color: #000000;
   text-decoration: none;
+}
+
+.panel-footer form {
+  display: inline-block;
+}
+
+.navbar-custom {
+  background-color: #333;
+  border-color: #333;
 }
