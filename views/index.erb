@@ -39,7 +39,7 @@
             <a href="/<%= vent.id %>"><%= vent.body %></a>
           </div>
           <div class="panel-footer">
-            <a href="/<%= vent.id %>"><button class="btn btn-primary btn-xs"><i class="fa fa-reply" aria-hidden="true"></i> Reply | <%= Comment.where(vent_id: vent.id).count%></button></a>
+            <a href="/<%= vent.id %>"><button class="btn btn-primary btn-xs"><i class="fa fa-comment-o" aria-hidden="true"></i> Comment | <%= Comment.where(vent_id: vent.id).count%></button></a>
             <form action="/agree/<%= vent.id %>" method="post">
               <button class="btn btn-success btn-xs">I feel you | <%= Agree.where(vent_id: vent.id).count %></button>
             </form>

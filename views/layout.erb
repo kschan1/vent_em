@@ -38,7 +38,7 @@
                 <input type="hidden" name="_method" value="DELETE">
                 <button class="btn btn-default">logout</button>
               </form>
-              <p class="navbar-text navbar-right"><%= current_user.username %></p>
+              <p class="navbar-text navbar-right"><i class="fa fa-user-o"></i> <%= current_user.username %></p>
             <% else %>
               <form action="/login" method="post" class="navbar-form navbar-right form-inline">
                   <input name="email" type="text" placeholder="email" class="form-control">
