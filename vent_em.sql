@@ -2,7 +2,7 @@ CREATE DATABASE vent_em;
 
 CREATE TABLE vents (
   id SERIAL4 PRIMARY KEY,
-  body VARCHAR(140) NOT NULL,
+  body VARCHAR(139) NOT NULL,
   creation_date_time TIMESTAMP,
   user_id INTEGER,
   vent_type_id INTEGER
@@ -10,7 +10,7 @@ CREATE TABLE vents (
 
 CREATE TABLE comments (
   id SERIAL4 PRIMARY KEY,
-  body VARCHAR(140) NOT NULL,
+  body VARCHAR(139) NOT NULL,
   vent_id INTEGER
 );
 
