@@ -19,7 +19,7 @@
 
       <% if logged_in? %>
         <form action="/" method="post">
-          <textarea class="form-control" name="vent_body" rows="8" cols="40" placeholder="Enter your vent"></textarea>
+          <textarea class="form-control" name="vent_body" rows="4" placeholder="Enter your vent"></textarea>
           <select name="vent_type_id" id="">
             <% @vent_types.each do |vent_type| %>
               <option value="<%= vent_type.id %>"><%= vent_type.name %></option>

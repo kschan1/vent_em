@@ -43,8 +43,8 @@
 
       <% if logged_in? %>
         <form action="/<%= @vent.id %>" method="post">
-          <textarea class="form-control" name="comment_body" rows="8" cols="40"></textarea>
-          <button class="btn btn-default">reply</button>
+          <textarea class="form-control" name="comment_body" rows="4"></textarea>
+          <button class="btn btn-default">comment</button>
         </form>
       <% else %>
         <p>Please login to comment or vote</p>
