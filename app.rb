@@ -85,13 +85,15 @@ get '/edit_vent/:id' do
   @vent = Vent.find(params[:id])
   redirect to '/' unless current_user.id == @vent.user.id
   @vent_types = VentType.order(id: :asc)
+  @comments = Comment.where(vent_id: params[:id]).order(id: :desc)
   erb :edit_vent
 end
 
 put '/:id' do
+  redirect to "/#{params[:id]}" unless logged_in?
   vent = Vent.find(params[:id])
   vent.update(body: params[:vent_body], vent_type_id: params[:vent_type_id])
-  redirect to '/'
+  redirect to "/#{params[:id]}"
 end
 
 post '/:id' do

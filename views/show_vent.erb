@@ -35,19 +35,19 @@
             <button class="btn btn-warning btn-xs">Harden up! | <%= Disagree.where(vent_id: @vent.id).count %></button>
           </form>
           <% if logged_in? && current_user.id == @vent.user.id %>
-            <a href="/edit_vent/<%= @vent.id %>"><button class="btn btn-default btn-xs">edit</button></a>
+            <a href="/edit_vent/<%= @vent.id %>"><button class="btn btn-default btn-xs edit-btn"><i class="fa fa-pencil-square-o"></i></button></a>
           <% end %>
         </div>
 
       </div>
 
       <% if logged_in? %>
-        <form action="/<%= @vent.id %>" method="post">
-          <textarea class="form-control" name="comment_body" rows="4"></textarea>
-          <button class="btn btn-default">comment</button>
+        <form class="comment-form" action="/<%= @vent.id %>" method="post">
+          <textarea class="form-control" name="comment_body" rows="4" placeholder="Enter your comment"></textarea>
+          <button class="btn btn-default comment-post-btn">post comment</button>
         </form>
       <% else %>
-        <p>Please login to comment or vote</p>
+        <p>Please <a href="/login">login</a> to comment or vote</p>
       <% end %>
 
       <h4>Comments</h4>

@@ -1,7 +1,7 @@
 
 body {
   padding-top: 70px;
-  background: #eeeeee;
+  background-color: #fff2e6;
 }
 
 .left-nav ul {
@@ -10,6 +10,11 @@ body {
 
 .left-nav ul li a {
   color: #555555;
+}
+
+.panel-default > .panel-heading {
+  background-color: #000066;
+  color: #ddd;
 }
 
 .panel-footer {
@@ -32,4 +37,32 @@ body {
 
 textarea.form-control {
   resize: none;
+}
+
+.vent-form {
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.vent-post-btn {
+  float: right;
+}
+
+.comment-form {
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.comment-post-btn {
+  float: right;
+}
+
+.edit-btn {
+  float: right;
+}
+
+h3 {
+  text-decoration: underline;
+  margin-bottom: 20px;
+  text-align: center;
 }
