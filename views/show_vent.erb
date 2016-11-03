@@ -43,8 +43,9 @@
 
       <% if logged_in? %>
         <form class="comment-form" action="/<%= @vent.id %>" method="post">
-          <textarea class="form-control" name="comment_body" rows="4" placeholder="Enter your comment"></textarea>
-          <button class="btn btn-default comment-post-btn">post comment</button>
+          <textarea class="form-control" name="comment_body" rows="4" placeholder="Enter your comment" id="textarea1" maxlength="139"></textarea>
+          <p class="char-track">character left: <span id="char-num"></span></p>
+          <button class="btn btn-default comment-post-btn" id="post-btn1">post comment</button>
         </form>
       <% else %>
         <p>Please <a href="/login">login</a> to comment or vote</p>

@@ -19,13 +19,14 @@
 
       <% if logged_in? %>
         <form class="vent-form" action="/" method="post">
-          <textarea class="form-control" name="vent_body" rows="4" placeholder="Enter your vent"></textarea>
+          <textarea class="form-control" name="vent_body" rows="4" placeholder="Enter your vent" id="textarea1" maxlength="139"></textarea>
           <select name="vent_type_id" id="">
             <% @vent_types.each do |vent_type| %>
               <option value="<%= vent_type.id %>"><%= vent_type.name %></option>
             <% end %>
           </select>
-          <button class="btn btn-default vent-post-btn">release</button>
+          <p class="char-track">character left: <span id="char-num">139</span></p>
+          <button class="btn btn-default vent-post-btn" id="post-btn1">vent</button>
         </form>
       <% end %>
 

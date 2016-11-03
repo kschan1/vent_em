@@ -68,9 +68,9 @@ end
 post '/create_user' do
   user = User.new(email: params[:email], username: params[:username], password: params[:password])
   if user.save
-    redirect to '/'
+    redirect to '/login'
   else
-    erb :create_user
+    redirect to '/create_user'
   end
 end
 
