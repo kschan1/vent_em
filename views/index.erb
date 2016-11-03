@@ -36,7 +36,7 @@
             <h4 class="panel-title"><%= vent.user.username %> <small><%= vent.creation_date_time || '' %> - <%= vent.vent_type.name.capitalize %></small></h4>
           </div>
           <div class="panel-body">
-            <a href="/<%= vent.id %>"><p><%= vent.body %></p></a>
+            <a href="/<%= vent.id %>"><%= vent.body %></a>
           </div>
           <div class="panel-footer">
             <button class="btn btn-primary btn-xs"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>

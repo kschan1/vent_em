@@ -6,3 +6,12 @@ body {
 .left-nav ul {
   list-style-type: none;
 }
+
+.panel-footer {
+  background-color: #ffffff;
+}
+
+.panel-body a {
+  color: #000000;
+  text-decoration: none;
+}
