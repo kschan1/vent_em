@@ -39,7 +39,7 @@
             <a href="/<%= vent.id %>"><%= vent.body %></a>
           </div>
           <div class="panel-footer">
-            <button class="btn btn-primary btn-xs"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
+            <a href="/<%= vent.id %>"><button class="btn btn-primary btn-xs"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button></a>
             <button class="btn btn-success btn-xs">I feel you</button>
             <button class="btn btn-warning btn-xs">Toughen up!</button>
             <% if logged_in? && current_user.id == vent.user.id %>

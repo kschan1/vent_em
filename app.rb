@@ -4,6 +4,7 @@ require_relative 'db_config'
 require_relative 'models/user'
 require_relative 'models/vent'
 require_relative 'models/vent_type'
+require_relative 'models/comment'
 require 'pry'
 
 enable :sessions
@@ -72,14 +73,15 @@ end
 
 get '/:id' do
   @vent = Vent.find(params[:id])
-  @vent_types = VentType.all
+  @vent_types = VentType.order(id: :asc)
+  @comments = Comment.where(vent_id: params[:id]).order(id: :desc)
   erb :show_vent
 end
 
 get '/edit_vent/:id' do
   @vent = Vent.find(params[:id])
   redirect to '/' unless current_user.id == @vent.user.id
-  @vent_types = VentType.all
+  @vent_types = VentType.order(id: :asc)
   erb :edit_vent
 end
 
@@ -87,4 +89,10 @@ put '/:id' do
   vent = Vent.find(params[:id])
   vent.update(body: params[:vent_body], vent_type_id: params[:vent_type_id])
   redirect to '/'
+end
+
+post '/:id' do
+  comment = Comment.new(body: params[:comment_body], creation_date_time: Time.now, vent_id: params[:id], user_id: current_user.id)
+  comment.save
+  redirect to "/#{params[:id]}"
 end

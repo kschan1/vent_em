@@ -5,6 +5,14 @@
 
     <div class="col-md-3">
 
+      <nav class="left-nav affix">
+        <ul>
+          <% @vent_types.each do |vent_type| %>
+          <li><a href="/?vent_type_id=<%= vent_type.id %>"><%= vent_type.name%></a></li>
+          <% end %>
+        </ul>
+      </nav>
+
     </div>
 
     <div class="col-md-6">
@@ -15,7 +23,7 @@
         </div>
 
         <div class="panel-body">
-          <a href="/<%= @vent.id %>"><%= @vent.body %></p>
+          <a href="/<%= @vent.id %>"><%= @vent.body %></a>
         </div>
 
         <div class="panel-footer">
@@ -28,6 +36,27 @@
         </div>
 
       </div>
+
+      <% if logged_in? %>
+        <form action="/<%= @vent.id %>" method="post">
+          <textarea class="form-control" name="comment_body" rows="8" cols="40"></textarea>
+          <button class="btn btn-default">reply</button>
+        </form>
+      <% end %>
+
+      <h4>Comments</h3>
+      <% @comments.each do |comment| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><%= comment.user.username %> <small><%= comment.creation_date_time || '' %></small></h4>
+          </div>
+          <div class="panel-body">
+            <p><%= comment.body %></p>
+          </div>
+        </div>
+      <% end %>
+
+
     </div>
 
     <div class="col-md-3">

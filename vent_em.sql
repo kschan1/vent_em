@@ -11,7 +11,9 @@ CREATE TABLE vents (
 CREATE TABLE comments (
   id SERIAL4 PRIMARY KEY,
   body VARCHAR(139) NOT NULL,
-  vent_id INTEGER
+  creation_date_time TIMESTAMP,
+  vent_id INTEGER,
+  user_id INTEGER
 );
 
 CREATE TABLE users (
