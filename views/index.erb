@@ -33,7 +33,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h5 class="panel-title"><%= vent.user.username %> <small><%= vent.creation_date_time || '' %> - <%= vent.vent_type.name.capitalize %></small></h5>
+            <h5 class="panel-title"><%= vent.user.username %> <small><i class="fa fa-calendar-o"></i> <%= vent.creation_date_time || '' %> - <i class="fa fa-tag"></i> <%= vent.vent_type.name.capitalize %></small></h5>
           </div>
           <div class="panel-body">
             <a href="/<%= vent.id %>"><%= vent.body %></a>
