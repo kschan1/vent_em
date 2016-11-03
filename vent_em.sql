@@ -18,7 +18,7 @@ CREATE TABLE users (
   id SERIAL4 PRIMARY KEY,
   email VARCHAR(300) NOT NULL,
   username VARCHAR(200) NOT NULL,
-  password_digest VARCHAR (400)
+  password_digest VARCHAR(400)
 );
 
 CREATE TABLE likes (

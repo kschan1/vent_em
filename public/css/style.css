@@ -1,3 +1,8 @@
-form input {
-  display: block;
+
+body {
+  padding-top: 70px;
+}
+
+.left-nav ul {
+  list-style-type: none;
 }

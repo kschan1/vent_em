@@ -21,8 +21,12 @@ helpers do
 end
 
 get '/' do
-  @vents = Vent.order(id: :desc)
-  @vent_types = VentType.all
+  @vent_types = VentType.order(id: :asc)
+  if params[:vent_type_id]
+    @vents = Vent.order(id: :desc).where(vent_type_id: params[:vent_type_id])
+  else
+    @vents = Vent.order(id: :desc)
+  end
   erb :index
 end
 

@@ -1,25 +1,61 @@
-<h2>index</h2>
 
-<% if logged_in? %>
-  <form action="/" method="post">
-    <textarea name="vent_body" rows="8" cols="40"></textarea>
-    <select name="vent_type_id" id="">
-      <% @vent_types.each do |vent_type| %>
-        <option value="<%= vent_type.id %>"><%= vent_type.name %></option>
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-3">
+
+      <nav class="left-nav affix">
+        <ul>
+          <% @vent_types.each do |vent_type| %>
+          <li><a href="/?vent_type_id=<%= vent_type.id %>"><%= vent_type.name%></a></li>
+          <% end %>
+        </ul>
+      </nav>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <% if logged_in? %>
+        <form action="/" method="post">
+          <textarea class="form-control" name="vent_body" rows="8" cols="40" placeholder="Enter your vent"></textarea>
+          <select name="vent_type_id" id="">
+            <% @vent_types.each do |vent_type| %>
+              <option value="<%= vent_type.id %>"><%= vent_type.name %></option>
+            <% end %>
+          </select>
+          <button class="btn btn-default">vent</button>
+        </form>
       <% end %>
-    </select>
-    <button>vent</button>
-  </form>
-<% end %>
 
+      <% @vents.each do |vent| %>
 
-<% @vents.each do |vent| %>
-  <h4><%= vent.user.username %> <small><%= vent.creation_date_time || '' %> - <%= vent.vent_type.name.capitalize %></small></h4>
-  <a href="/<%= vent.id %>"><p><%= vent.body %></a></p>
-  <button><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
-  <button>I feel you</button>
-  <button>Toughen up!</button>
-  <% if logged_in? && current_user.id == vent.user.id %>
-    <a href="/edit_vent/<%= vent.id %>"><button>edit</button></a>
-  <% end %>
-<% end %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><%= vent.user.username %> <small><%= vent.creation_date_time || '' %> - <%= vent.vent_type.name.capitalize %></small></h4>
+          </div>
+          <div class="panel-body">
+            <a href="/<%= vent.id %>"><p><%= vent.body %></p></a>
+          </div>
+          <div class="panel-footer">
+            <button class="btn btn-primary btn-xs"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
+            <button class="btn btn-success btn-xs">I feel you</button>
+            <button class="btn btn-warning btn-xs">Toughen up!</button>
+            <% if logged_in? && current_user.id == vent.user.id %>
+              <a href="/edit_vent/<%= vent.id %>"><button class="btn btn-default btn-xs">edit</button></a>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+
+  </div>
+
+</div>

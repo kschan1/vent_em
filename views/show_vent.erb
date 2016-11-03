@@ -1,8 +1,39 @@
-<h4><%= @vent.user.username %> <small><%= @vent.creation_date_time || '' %> - <%= @vent.vent_type.name.capitalize %></small></h4>
-<a href="/<%= @vent.id %>"><p><%= @vent.body %></a></p>
-<button><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
-<button>I feel you</button>
-<button>Toughen up!</button>
-<% if current_user.id == @vent.user.id %>
-  <a href="/edit_vent/<%= @vent.id %>"><button>edit</button></a>
-<% end %>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h4 class="panel-title"><%= @vent.user.username %> <small><%= @vent.creation_date_time || '' %> - <%= @vent.vent_type.name.capitalize %></small></h4>
+        </div>
+
+        <div class="panel-body">
+          <a href="/<%= @vent.id %>"><p><%= @vent.body %></a></p>
+        </div>
+
+        <div class="panel-footer">
+          <button class="btn btn-primary btn-xs"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
+          <button class="btn btn-success btn-xs">I feel you</button>
+          <button class="btn btn-warning btn-xs">Toughen up!</button>
+          <% if logged_in? && current_user.id == @vent.user.id %>
+            <a href="/edit_vent/<%= @vent.id %>"><button class="btn btn-default btn-xs">edit</button></a>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+
+  </div>
+
+</div>
