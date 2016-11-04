@@ -71,3 +71,14 @@ h3 {
   display: inline-block;
   margin-left: 10px;
 }
+
+i {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+@media (max-width: 768px) {
+  .sidebar > nav {
+    display: none;
+  }
+}

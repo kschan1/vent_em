@@ -1,7 +1,7 @@
 
 <div class="container">
 
-  <div class="col-md-3">
+  <div class="col-sm-3 col-md-3 sidebar">
     <nav class="left-nav affix">
       <ul>
         <% @vent_types.each do |vent_type| %>
@@ -11,7 +11,7 @@
     </nav>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-sm-9 col-md-6">
 
     <h4>Edit your vent</h4>
     <form class="vent-form" action="/<%= @vent.id %>" method="post">
