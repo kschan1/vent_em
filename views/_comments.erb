@@ -1,0 +1,11 @@
+
+<% @comments.each do |comment| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title"><%= comment.user.username %> <small><i class="fa fa-calendar-o"></i> <%= comment.creation_date_time || '' %></small></h5>
+    </div>
+    <div class="panel-body">
+      <p><%= comment.body %></p>
+    </div>
+  </div>
+<% end %>

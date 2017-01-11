@@ -1,12 +1,6 @@
 
 <div class="col-sm-3 col-md-3 sidebar">
-  <nav class="left-nav affix">
-    <ul>
-      <% @vent_types.each do |vent_type| %>
-      <li><a href="/?vent_type_id=<%= vent_type.id %>"><%= vent_type.name%></a></li>
-      <% end %>
-    </ul>
-  </nav>
+  <%= erb(:_side_nav) %>
 </div>
 
 <div class="col-sm-9 col-md-6">
@@ -34,16 +28,7 @@
   </form>
 
   <h4>Comments</h4>
-  <% @comments.each do |comment| %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h5 class="panel-title"><%= comment.user.username %> <small><i class="fa fa-calendar-o"></i> <%= comment.creation_date_time || '' %></small></h5>
-      </div>
-      <div class="panel-body">
-        <p><%= comment.body %></p>
-      </div>
-    </div>
-  <% end %>
+  <%= erb(:_comments) %>
 
 </div>
 
