@@ -8,4 +8,4 @@ require_relative 'models/comment'
 require_relative 'models/agree'
 require_relative 'models/disagree'
 
-# binding.pry
+binding.pry

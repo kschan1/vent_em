@@ -28,6 +28,11 @@
     <button class="btn btn-default vent-post-btn" id="post-btn1">update</button>
   </form>
 
+  <form class="text-right" action="/<%= @vent.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn btn-danger">delete</button>
+  </form>
+
   <h4>Comments</h4>
   <% @comments.each do |comment| %>
     <div class="panel panel-default">

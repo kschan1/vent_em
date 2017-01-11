@@ -1,5 +1,5 @@
 require 'sinatra'
-# require 'sinatra/reloader'
+require 'sinatra/reloader'
 require_relative 'db_config'
 require_relative 'models/user'
 require_relative 'models/vent'
@@ -34,26 +34,6 @@ get '/' do
   erb :index
 end
 
-get '/login' do
-  erb :login
-end
-
-post '/login' do
-  user = User.find_by(email: params[:email])
-  if user && user.authenticate(params[:password])
-    # if user and password matches, create session
-    session[:user_id] = user.id
-    redirect '/'
-  else
-    # if incorrect, go back to login page
-    redirect to '/login'
-  end
-end
-
-delete '/login' do
-  session[:user_id] = nil
-  redirect to '/login'
-end
 
 post '/' do
   vent = Vent.new(
@@ -115,6 +95,12 @@ post '/:id' do
   )
   comment.save
   redirect to "/#{params[:id]}"
+end
+
+delete '/:id' do
+  vent = Vent.find(params[:id])
+  vent.delete
+  redirect to '/'
 end
 
 post '/agree/:id' do
