@@ -1,61 +1,57 @@
 
-<div class="container">
+<div class="row">
 
-  <div class="row">
+  <div class="col-sm-3 col-md-3 sidebar">
 
-    <div class="col-sm-3 col-md-3 sidebar">
+    <nav class="left-nav affix">
+      <ul>
+        <% @vent_types.each do |vent_type| %>
+        <li><a href="/?vent_type_id=<%= vent_type.id %>"><%= vent_type.name%></a></li>
+        <% end %>
+      </ul>
+    </nav>
 
-      <nav class="left-nav affix">
-        <ul>
+  </div>
+
+  <div class="col-sm-9 col-md-6">
+
+    <% if logged_in? %>
+      <form class="vent-form" action="/" method="post">
+        <textarea class="form-control" name="vent_body" rows="4" placeholder="Enter your vent" id="textarea1" maxlength="139"></textarea>
+        <select name="vent_type_id" id="">
           <% @vent_types.each do |vent_type| %>
-          <li><a href="/?vent_type_id=<%= vent_type.id %>"><%= vent_type.name%></a></li>
+            <option value="<%= vent_type.id %>"><%= vent_type.name %></option>
           <% end %>
-        </ul>
-      </nav>
+        </select>
+        <p class="char-track">character left: <span id="char-num">139</span></p>
+        <button class="btn btn-default vent-post-btn" id="post-btn1">vent</button>
+      </form>
+    <% end %>
 
-    </div>
+    <% @vents.each do |vent| %>
 
-    <div class="col-sm-9 col-md-6">
-
-      <% if logged_in? %>
-        <form class="vent-form" action="/" method="post">
-          <textarea class="form-control" name="vent_body" rows="4" placeholder="Enter your vent" id="textarea1" maxlength="139"></textarea>
-          <select name="vent_type_id" id="">
-            <% @vent_types.each do |vent_type| %>
-              <option value="<%= vent_type.id %>"><%= vent_type.name %></option>
-            <% end %>
-          </select>
-          <p class="char-track">character left: <span id="char-num">139</span></p>
-          <button class="btn btn-default vent-post-btn" id="post-btn1">vent</button>
-        </form>
-      <% end %>
-
-      <% @vents.each do |vent| %>
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h5 class="panel-title"><%= vent.user.username %> <small><i class="fa fa-calendar-o"></i> <%= vent.creation_date_time || '' %> - <i class="fa fa-tag"></i> <%= vent.vent_type.name.capitalize %></small></h5>
-          </div>
-          <div class="panel-body">
-            <a href="/<%= vent.id %>"><%= vent.body %></a>
-          </div>
-          <div class="panel-footer">
-            <a href="/<%= vent.id %>"><button class="btn btn-primary btn-xs"><i class="fa fa-comment-o" aria-hidden="true"></i> Comment | <%= Comment.where(vent_id: vent.id).count%></button></a>
-            <form action="/agree/<%= vent.id %>" method="post">
-              <button class="btn btn-success btn-xs">I hear you | <%= Agree.where(vent_id: vent.id).count %></button>
-            </form>
-            <form action="/disagree/<%= vent.id %>" method="post">
-              <button class="btn btn-warning btn-xs">Harden up! | <%= Disagree.where(vent_id: vent.id).count %></button>
-            </form>
-            <% if logged_in? && current_user.id == vent.user.id %>
-              <a href="/edit_vent/<%= vent.id %>"><button class="btn btn-default btn-xs edit-btn"><i class="fa fa-pencil-square-o"></i></button></a>
-            <% end %>
-          </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5 class="panel-title"><%= vent.user.username %> <small><i class="fa fa-calendar-o"></i> <%= vent.creation_date_time || '' %> - <i class="fa fa-tag"></i> <%= vent.vent_type.name.capitalize %></small></h5>
         </div>
+        <div class="panel-body">
+          <a href="/<%= vent.id %>"><%= vent.body %></a>
+        </div>
+        <div class="panel-footer">
+          <a href="/<%= vent.id %>"><button class="btn btn-primary btn-xs"><i class="fa fa-comment-o" aria-hidden="true"></i> Comment | <%= Comment.where(vent_id: vent.id).count%></button></a>
+          <form action="/agree/<%= vent.id %>" method="post">
+            <button class="btn btn-success btn-xs">I hear you | <%= Agree.where(vent_id: vent.id).count %></button>
+          </form>
+          <form action="/disagree/<%= vent.id %>" method="post">
+            <button class="btn btn-warning btn-xs">Harden up! | <%= Disagree.where(vent_id: vent.id).count %></button>
+          </form>
+          <% if logged_in? && current_user.id == vent.user.id %>
+            <a href="/edit_vent/<%= vent.id %>"><button class="btn btn-default btn-xs edit-btn"><i class="fa fa-pencil-square-o"></i></button></a>
+          <% end %>
+        </div>
+      </div>
 
-      <% end %>
-
-    </div>
+    <% end %>
 
   </div>
 
