@@ -34,6 +34,26 @@ get '/' do
   erb :index
 end
 
+get '/login' do
+  erb :login
+end
+
+post '/login' do
+  user = User.find_by(email: params[:email])
+  if user && user.authenticate(params[:password])
+    # if user and password matches, create session
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    # if incorrect, go back to login page
+    redirect to '/login'
+  end
+end
+
+delete '/login' do
+  session[:user_id] = nil
+  redirect to '/login'
+end
 
 post '/' do
   vent = Vent.new(
