@@ -56,7 +56,12 @@ delete '/login' do
 end
 
 post '/' do
-  vent = Vent.new(body: params[:vent_body], user_id: current_user.id, creation_date_time: Time.now, vent_type_id: params[:vent_type_id])
+  vent = Vent.new(
+    body: params[:vent_body],
+    user_id: current_user.id,
+    creation_date_time: Time.now,
+    vent_type_id: params[:vent_type_id]
+  )
   vent.save
   redirect to '/'
 end
@@ -66,7 +71,11 @@ get '/create_user' do
 end
 
 post '/create_user' do
-  user = User.new(email: params[:email], username: params[:username], password: params[:password])
+  user = User.new(
+    email: params[:email],
+    username: params[:username],
+    password: params[:password]
+  )
   if user.save
     redirect to '/login'
   else
@@ -98,7 +107,12 @@ end
 
 post '/:id' do
   redirect to "/#{params[:id]}" unless logged_in?
-  comment = Comment.new(body: params[:comment_body], creation_date_time: Time.now, vent_id: params[:id], user_id: current_user.id)
+  comment = Comment.new(
+    body: params[:comment_body],
+    creation_date_time: Time.now,
+    vent_id: params[:id],
+    user_id: current_user.id
+  )
   comment.save
   redirect to "/#{params[:id]}"
 end
