@@ -119,7 +119,7 @@ end
 
 delete '/:id' do
   vent = Vent.find(params[:id])
-  vent.delete
+  vent.destroy
   redirect to '/'
 end
 
