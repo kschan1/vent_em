@@ -1,6 +1,6 @@
 
 <nav class="left-nav affix">
-  <ul>
+  <ul class="list-unstyled">
     <% @vent_types.each do |vent_type| %>
     <li><a href="/?vent_type_id=<%= vent_type.id %>"><%= vent_type.name%></a></li>
     <% end %>
